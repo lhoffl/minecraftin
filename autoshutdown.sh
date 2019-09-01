@@ -19,8 +19,8 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 		PLAYERSLIST=$(tail -n 1 /home/ubuntu/logs/latest.log | cut -f2 -d"/" | cut -f2 -d":")
 		if [ "$PLAYERSLIST" = "$PLAYERSEMPTY" ]
 		then
-			/usr/bin/python3 /home/ubuntu/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
-			/bin/bash /home/ubuntu/runOverviewer.sh
+			/usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
+			/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
 			#$(sudo /sbin/shutdown -P +1)
 		fi
 	fi
@@ -29,8 +29,8 @@ else
 	/usr/bin/logger "Running overviewer from autoshutdown"
 	if ! ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 		/usr/bin/logger "Screen does not exist, shutting down"
-		/usr/bin/python3 /home/ubuntu/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
-		/bin/bash /home/ubuntu/runOverviewer.sh
+		/usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
+		/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
 		#$(sudo /sbin/shutdown -P +1)
 	fi
 fi

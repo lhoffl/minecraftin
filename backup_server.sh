@@ -9,8 +9,10 @@ echo $difference
 if [[  $difference > 1000 ]] || [[ $1 > 0 ]]; then
 	/usr/bin/logger "Creating server backup"
 	echo "Creating server backup"
-
-	/bin/tar -czvf "/home/ubuntu/backups/$date-tar.gz" /home/ubuntu/world/
+	
+	/bin/mv /home/ubuntu/backups/latest_backup.tar.gz /home/ubuntu/backups/old_.tar.gz
+	/bin/tar -czvf "/home/ubuntu/backups/latest_backup.tar.gz" /home/ubuntu/world/
+	/usr/bin/aws sync /home/ubuntu/backups/ s3://lhoffl.com/minecrafin_backups
 	/bin/date +%Y%m%d%H > last_date.txt
 fi
 
