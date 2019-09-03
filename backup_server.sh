@@ -26,7 +26,7 @@ if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
 
 	/bin/mv /home/ubuntu/backups/latest_backup.tar.gz /home/ubuntu/backups/old_.tar.gz
 	/bin/tar -czvf backups/latest_backup.tar.gz world/
-	/usr/bin/aws sync /home/ubuntu/backups/ s3://lhoffl.com/minecrafin_backups/
+	/usr/bin/aws cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecrafin_backups/$current-backup.tar.gz
 	/bin/date +%Y%m%d%H > $backup_date_file
 
     rm $lock_file
