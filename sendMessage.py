@@ -7,7 +7,7 @@ import http.client
 def send( message ):
  
     # your webhook URL
-    webhookurl = "https://discordapp.com/api/webhooks/616858297055576064/rpIK_JLJWm2VXnROhq-dwKIfezgD0lwqVU2PGxI_8uOyf-eiAndjELUPWSr031SZGUzG"
+    webhookurl = ""
  
     # compile the form data (BOUNDARY can be anything)
     formdata = "------:::BOUNDARY:::\r\nContent-Disposition: form-data; name=\"content\"\r\n\r\n" + message + "\r\n------:::BOUNDARY:::--"
