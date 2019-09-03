@@ -25,7 +25,7 @@ if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
     /bin/bash msg_all_outputs "Server backup in progress"
 
 	/bin/mv /home/ubuntu/backups/latest_backup.tar.gz /home/ubuntu/backups/old_.tar.gz
-	/bin/tar -czvf "/home/ubuntu/backups/latest_backup.tar.gz" /home/ubuntu/world/
+	/bin/tar -czvf backups/latest_backup.tar.gz world/
 	/usr/bin/aws sync /home/ubuntu/backups/ s3://lhoffl.com/minecrafin_backups/
 	/bin/date +%Y%m%d%H > $backup_date_file
 
