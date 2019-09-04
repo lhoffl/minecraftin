@@ -1,6 +1,6 @@
 #!/bin/bash
 
-backup_date_file="last_date_backup.txt"
+backup_date_file="/home/ubuntu/minecraftin/last_date_backup.txt"
 
 if [[ ! -f "$backup_date_file" ]]; then
   touch "$backup_date_file"
@@ -12,7 +12,7 @@ current=$(/bin/date +%Y%m%d%H)
 difference=$((current-last_date))
 echo $difference
 
-lock_file="backup.lock"
+lock_file="/home/ubuntu/minecraftin/backup.lock"
 
 if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
 
@@ -25,8 +25,11 @@ if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
     /bin/bash msg_all_outputs "Server backup in progress"
 
 	/bin/mv /home/ubuntu/backups/latest_backup.tar.gz /home/ubuntu/backups/old_.tar.gz
+	cd /home/ubuntu/
 	/bin/tar -czvf backups/latest_backup.tar.gz world/
 	/usr/bin/aws cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecrafin_backups/$current-backup.tar.gz
+	/usr/bin/aws rm s3://lhoffl.com/minecrafin_backups/latest_backup.tar.gz
+	/usr/bin/aws cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecrafin_backups/latest_backup.tar.gz
 	/bin/date +%Y%m%d%H > $backup_date_file
 
     rm $lock_file

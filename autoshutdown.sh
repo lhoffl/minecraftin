@@ -21,15 +21,16 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 		then
 			/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
             /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
-            if [[ -f "overviewer.lock" ]]; then
+            if [[ -f "/home/ubuntu/minecraftin/overviewer.lock" ]]; then
 		      /usr/bin/logger "Overviewer run currently in progress, waiting for the run to finish before shutting down."
               exit
-            elif [[ -f "backup.lock" ]]; then
+            elif [[ -f "/home/ubuntu/minecraftin/backup.lock" ]]; then
 		      /usr/bin/logger "Server backup currently in progress, waiting for the run to finish before shutting down."
               exit
             else
-		      $(screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
-              /usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
+		$(screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
+              	/usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
+		/bin/rm /home/ubuntu/minecraftin/server.lock
 			  $(sudo /sbin/shutdown -P +1)
             fi
 		fi
@@ -49,6 +50,7 @@ else
           else
             $(screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
             /usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
+	    /bin/rm /home/ubuntu/minecraftin/server.lock
             $(sudo /sbin/shutdown -P +1)
           fi
 	fi
