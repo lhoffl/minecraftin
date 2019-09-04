@@ -32,6 +32,7 @@ if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
 	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecraftin_backups/latest_backup.tar.gz
 	/bin/date +%Y%m%d%H > $backup_date_file
 
+    /bin/bash /home/ubuntu/minecraftin/msg_all_outputs.sh "Server backup completed"
     rm $lock_file
 fi
 
