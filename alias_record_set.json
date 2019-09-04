@@ -1,0 +1,18 @@
+{
+    "Comment": "Update record to reflect new IP address of minecraftin server",
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "minecraftin.lhoffl.com",
+                "Type": "A",
+		"TTL": 300,
+                "ResourceRecords": [
+                    {
+                        "Value": "3.226.243.190"
+                    }
+                ]
+            }
+        }
+    ]
+}
