@@ -17,4 +17,6 @@ cd /home/ubuntu
 cd /home/ubuntu/minecraftin/
 /bin/bash create_new_alias.sh
 cd /home/ubuntu
+export SCREENDIR=/home/ubuntu/screens/
+chmod 700 /home/ubuntu/screens/
 /usr/bin/screen -dmS minecraft /bin/bash -c '/usr/bin/sudo /usr/bin/java -Xmx4096M -Xms4096M -jar /home/ubuntu/fabric-server-launch.jar nogui'

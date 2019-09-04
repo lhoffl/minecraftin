@@ -28,7 +28,7 @@ if [[  $difference > 60 ]] || [[ $1 > 0 ]]; then
 	cd /home/ubuntu/
 	/bin/tar -czvf backups/latest_backup.tar.gz world/
 	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecraftin_backups/$current-backup.tar.gz
-	/usr/bin/aws s3 rm s3://lhoffl.com/minecrafin_backups/latest_backup.tar.gz
+	/usr/bin/aws s3 rm s3://lhoffl.com/minecraftin_backups/latest_backup.tar.gz
 	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecraftin_backups/latest_backup.tar.gz
 	/bin/date +%Y%m%d%H > $backup_date_file
 
