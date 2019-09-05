@@ -19,8 +19,6 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 		PLAYERSLIST=$(tail -n 1 /home/ubuntu/logs/latest.log | cut -f2 -d"/" | cut -f2 -d":")
 		if [ "$PLAYERSLIST" = "$PLAYERSEMPTY" ]
 		then
-			/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
-            /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
             if [[ -f "/home/ubuntu/minecraftin/overviewer.lock" ]]; then
 		      /usr/bin/logger "Overviewer run currently in progress, waiting for the run to finish before shutting down."
               exit
@@ -28,6 +26,9 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 		      /usr/bin/logger "Server backup currently in progress, waiting for the run to finish before shutting down."
               exit
             else
+			
+            	/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
+		/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
 		$(screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
               	/usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
 		/bin/rm /home/ubuntu/minecraftin/server.lock
@@ -39,8 +40,6 @@ else
 	/usr/bin/logger "Screen does not exist briefly waiting before trying again"
 	/usr/bin/logger "Running overviewer from autoshutdown"
 	if ! ps ax | grep -v grep | grep $SERVICE > /dev/null; then
-          /bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
-          /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
           if [[ -f "overviewer.lock" ]]; then
             /usr/bin/logger "Overviewer run currently in progress, waiting for the run to finish before shutting down."
             exit
@@ -48,6 +47,8 @@ else
             /usr/bin/logger "Server backup currently in progress, waiting for the run to finish before shutting down."
             exit
           else
+            /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
+	    /bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
             $(screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
             /usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
 	    /bin/rm /home/ubuntu/minecraftin/server.lock
