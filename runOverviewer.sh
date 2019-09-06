@@ -31,7 +31,6 @@ if [[ "$difference" -gt "60" ]] || [[ $1 > 0 ]]; then
     rm $lock_file
     
     /bin/bash msg_all_outputs "New world map available at http://lhoffl.com/minecraftin"    
-    exit
 fi
 
 $(sudo /sbin/shutdown -P +1)
