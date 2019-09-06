@@ -14,8 +14,8 @@ renders['lower-right'] = {
     'title':'lower-right',
     'northdirection': "lower-right",
     'rendermode': 'normal',
-    'imgquality': 80,
-    'defaultzoom': 3,
+    'imgquality': 60,
+    'defaultzoom': 5,
     'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
 }
 
@@ -23,8 +23,8 @@ renders['upper-left'] = {
     'world':'world',
     'title':'upper-left',
     'rendermode': 'normal',
-    'imgquality': 80,
-    'defaultzoom': 3,
+    'imgquality': 60,
+    'defaultzoom': 5,
     'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
 }
 
