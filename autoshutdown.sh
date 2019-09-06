@@ -3,6 +3,14 @@ SERVICE='fabric-server-launch.jar'
 SCREENDIR=/home/ubuntu/screens/
 export SCREENDIR=/home/ubuntu/screens/
 
+life=$(echo $(awk '{print $1}' /proc/uptime) / 60 | bc)
+echo $life
+
+if [[ "$life" -lt "15" ]]; then
+	/usr/bin/logger "Looks like the server just started. It's only been online for $life minutes. Wait awhile to make sure DNS alias goes through and users can log in."
+	exit
+fi
+
 if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
     PLAYERSEMPTY=" There are 0 of a max 20 players online"
 	$(/usr/bin/screen -S minecraft -p 0 -X stuff "list^M")
