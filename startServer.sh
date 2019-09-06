@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /home/ubuntu/minecraftin/
-git pull
+git pull | /usr/bin/logger

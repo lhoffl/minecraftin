@@ -40,7 +40,7 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
             else
 			
             	/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
-		/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh true
+		/bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
 		$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
               	/usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
 		/bin/rm /home/ubuntu/minecraftin/server.lock
@@ -59,7 +59,7 @@ else
             exit
           else
             /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
-	    /bin/bash /home/ubuntu/minecraftin/runOverviewer.sh true
+	    /bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
             $(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
             /usr/bin/python3 /home/ubuntu/minecraftin/sendMessage.py "Server shutting down. Restart it at http://minecraftin.herokuapp.com/"
 	    /bin/rm /home/ubuntu/minecraftin/server.lock
