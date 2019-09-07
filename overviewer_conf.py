@@ -14,18 +14,18 @@ renders['lower-right'] = {
     'title':'lower-right',
     'northdirection': "lower-right",
     'rendermode': 'normal',
-    'imgquality': 60,
+    'imgquality': 50,
     'defaultzoom': 5,
     'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
 }
 
-renders['upper-left'] = {
-    'world':'world',
-    'title':'upper-left',
-    'rendermode': 'normal',
-    'imgquality': 60,
-    'defaultzoom': 5,
-    'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
-}
+#renders['upper-left'] = {
+#    'world':'world',
+#    'title':'upper-left',
+#   'rendermode': 'normal',
+#    'imgquality': 60,
+#    'defaultzoom': 5,
+#    'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
+#}
 
 outputdir = "/home/ubuntu/mcmap"
