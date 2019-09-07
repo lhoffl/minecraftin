@@ -7,6 +7,11 @@ if [[ -f "$lock_file" ]]; then
 	exit
 fi
 
+if [[ ! -d "/home/ubuntu/world" ]]; then
+	echo "WORLD DOESN'T EXIST"
+	exit
+fi
+
 touch $lock_file
 
 /bin/bash /home/ubuntu/minecraftin/msg_all_outputs.sh "Server backup in progress"
