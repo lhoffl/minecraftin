@@ -23,7 +23,7 @@ if [[ "$difference" -gt "80" ]] || [[ $1 > 0 ]]; then
     touch $lock_file
     
     	/bin/bash msg_all_outputs "Generating an updated world map."    
-	/usr/bin/aws s3 sync s3://lhoffl.com/minecraftin/ /home/ubuntu/mcmap/
+	#/usr/bin/aws s3 sync s3://lhoffl.com/minecraftin/ /home/ubuntu/mcmap/
 
 	/usr/bin/python3 /home/ubuntu/overviewer.py --config=/home/ubuntu/minecraftin/overviewer_conf.py
 	/usr/bin/python3 /home/ubuntu/overviewer.py --config /home/ubuntu/minecraftin/overviewer_conf.py --genpoi --skip-players
