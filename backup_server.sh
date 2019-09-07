@@ -15,6 +15,8 @@ touch $lock_file
 cd /home/ubuntu/
 /bin/tar -czvf backups/latest_backup.tar.gz world/
 
+current=$(date +%Y%d%m)
+
 if [[ $1 > 0 ]]; then
 	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://lhoffl.com/minecraftin_backups/$current-backup.tar.gz
 	/usr/bin/aws s3 rm s3://lhoffl.com/minecraftin_backups/latest_backup.tar.gz

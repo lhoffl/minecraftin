@@ -19,4 +19,4 @@ cd /home/ubuntu/minecraftin/
 cd /home/ubuntu
 export SCREENDIR=/home/ubuntu/screens/
 chmod 700 /home/ubuntu/screens/
-/usr/bin/screen -dmS minecraft /bin/bash -c '/usr/bin/sudo /usr/bin/java -Xmx4096M -Xms4096M -jar /home/ubuntu/fabric-server-launch.jar nogui'
+/usr/bin/screen -dmS minecraft /bin/bash -c '/usr/bin/sudo /usr/bin/java -Xmx3072M -Xms3072M -jar /home/ubuntu/fabric-server-launch.jar nogui'
