@@ -14,7 +14,7 @@ renders['lower-right'] = {
     'title':'lower-right',
     'northdirection': "lower-right",
     'rendermode': 'normal',
-    'imgquality': 50,
+    'imgquality': 25,
     'defaultzoom': 5,
     'markers': [dict(name="Locations", filterFunction=signFilter, checked="true", icon="icons/marker_home.png")],
 }
