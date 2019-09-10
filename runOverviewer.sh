@@ -5,7 +5,9 @@ if [[ ! -f "$last_date_overviewer" ]]; then
   touch $last_date_overviewer
 fi
 
-/usr/bin/aws s3 cp s3://lhoffl.com/last_date_overviewer.txt $last_date_overviewer
+source /home/ubuntu/minecraftin/secret.conf
+
+/usr/bin/aws s3 cp s3://$BUCKET/last_date_overviewer.txt $last_date_overviewer
 
 last_date=$(/bin/cat $last_date_overviewer)
 current=$(/bin/date +%Y%m%d%H)
@@ -27,13 +29,13 @@ if [[ "$difference" -gt "80" ]] || [[ $1 > 0 ]]; then
 
 	/usr/bin/python3 /home/ubuntu/overviewer.py --config=/home/ubuntu/minecraftin/overviewer_conf.py
 	/usr/bin/python3 /home/ubuntu/overviewer.py --config /home/ubuntu/minecraftin/overviewer_conf.py --genpoi --skip-players
-	/usr/bin/aws s3 sync --delete /home/ubuntu/mcmap/ s3://lhoffl.com/minecraftin/
+	/usr/bin/aws s3 sync --delete /home/ubuntu/mcmap/ s3://$BUCKET/minecraftin/
 	
     /bin/date +%Y%m%d%H > $last_date_overviewer
-    /usr/bin/aws s3 cp $last_date_overviewer s3://lhoffl.com/last_date_overviewer.txt
+    /usr/bin/aws s3 cp $last_date_overviewer s3://$BUCKET/last_date_overviewer.txt
     rm $lock_file
     
-    /bin/bash msg_all_outputs "New world map available at http://lhoffl.com/minecraftin"    
+    /bin/bash msg_all_outputs "New world map available at $MAP"    
 fi
 
 $(sudo /sbin/shutdown -P +1)
