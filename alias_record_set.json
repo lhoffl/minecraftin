@@ -4,12 +4,12 @@
         {
             "Action": "UPSERT",
             "ResourceRecordSet": {
-                "Name": "SERVER",
+                "Name": "minecraftin.lhoffl.com",
                 "Type": "A",
 		"TTL": 300,
                 "ResourceRecords": [
                     {
-                        "Value": "52.205.48.181"
+                        "Value": "34.201.10.225"
                     }
                 ]
             }

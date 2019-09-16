@@ -52,6 +52,7 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 					/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
 					$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
 					/bin/rm /home/ubuntu/minecraftin/server.lock
+					$(sudo /sbin/shutdown -P +1)
 				fi
             		fi
 	    	fi
@@ -67,22 +68,12 @@ else
             /usr/bin/logger "Server backup currently in progress, waiting for the run to finish before shutting down."
             exit
           else
-	     /bin/bash /home/ubuntu/minecraftin/runOverviewer.sh
-            /bin/bash /home/ubuntu/minecraftin/backup_server.sh true
+            	/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
 		
-		   		PLAYERSEMPTY=" There are 0 of a max 20 players online"
-				$(/usr/bin/screen -S minecraft -p 0 -X stuff "list^M")
-				sleep 5	
-				$(/usr/bin/screen -S minecraft -p 0 -X stuff "list^M")
-				sleep 5
-				PLAYERSLIST=$(tail -n 1 /home/ubuntu/logs/latest.log | cut -f2 -d"/" | cut -f2 -d":")
-				echo $PLAYERSLIST
-			
-				if [ "$PLAYERSLIST" = "$PLAYERSEMPTY" ]; then
-					/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
-					$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
-					/bin/rm /home/ubuntu/minecraftin/server.lock
-				fi
+		$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
+		/bin/rm /home/ubuntu/minecraftin/server.lock
+		$(sudo /sbin/shutdown -P +1)
+				
           fi
 	fi
 fi

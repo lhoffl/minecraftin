@@ -37,5 +37,3 @@ if [[ "$difference" -gt "80" ]] || [[ $1 > 0 ]]; then
     
     /bin/bash msg_all_outputs "New world map available at $MAP"    
 fi
-
-$(sudo /sbin/shutdown -P +1)
