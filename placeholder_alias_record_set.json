@@ -6,7 +6,7 @@
             "ResourceRecordSet": {
                 "Name": "SERVER",
                 "Type": "A",
-		"TTL": 300,
+		"TTL": 1,
                 "ResourceRecords": [
                     {
                         "Value": "PLACEHOLDER"

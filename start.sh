@@ -13,7 +13,7 @@ touch /home/ubuntu/minecraftin/server.lock
 sleep 20s
 
 /bin/rm -rf /home/ubuntu/world
-/usr/bin/aws s3 cp s3://$BUCKET/minecraftin_backups/$current-backup.tar.gz /home/ubuntu/
+/usr/bin/aws s3 cp s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz /home/ubuntu/
 cd /home/ubuntu
 /bin/tar xzf /home/ubuntu/latest_backup.tar.gz 
 
