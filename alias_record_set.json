@@ -6,7 +6,7 @@
             "ResourceRecordSet": {
                 "Name": "minecraftin.lhoffl.com",
                 "Type": "A",
-		"TTL": 300,
+		"TTL": 1,
                 "ResourceRecords": [
                     {
                         "Value": "35.170.69.39"
