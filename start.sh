@@ -5,6 +5,7 @@ if [[ -f "/home/ubuntu/minecraftin/server.lock" ]]; then
 fi
 
 source /home/ubuntu/minecraftin/secret.conf
+source /home/ubuntu/minecraftin/mem.conf
 
 touch /home/ubuntu/minecraftin/server.lock
 /bin/bash /home/ubuntu/minecraftin/msg_all_outputs.sh "Server starting."
