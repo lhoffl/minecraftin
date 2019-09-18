@@ -25,17 +25,19 @@ current=$(date +%Y%d%m)
 
 if [[ $1 > 0 ]]; then
 
-	# push spare backups every other hour
-	if [[ ! -f "$alternate_run_file" ]]; then
+	# push spare backups every other hour, don't if pushing latest
+	if [[ ! -f "$alternate_run_file" ]] && [[ $# -eq 1 ]]; then
 		/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/old_backups/$current-backup.tar.gz
 		rm $alternate_run_file
-	else
+	elif [[ $# -eq 1 ]]; then
 		touch $alternate_run_file
 	fi
 	
-	/usr/bin/aws s3 rm s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
-	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
-
+	# if server is shutting down, back it up as latest
+	if [[ $2 > 0 ]]; then
+		/usr/bin/aws s3 rm s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
+		/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
+	fi
 fi
 
 /bin/bash /home/ubuntu/minecraftin/msg_all_outputs.sh "Server backup completed"	
