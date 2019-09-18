@@ -49,7 +49,7 @@ if ps ax | grep -v grep | grep $SERVICE > /dev/null; then
 				echo $PLAYERSLIST
 			
 				if [ "$PLAYERSLIST" = "$PLAYERSEMPTY" ]; then
-					/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
+					/bin/bash /home/ubuntu/minecraftin/backup_server.sh true true
 					$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
 					/bin/rm /home/ubuntu/minecraftin/server.lock
 					$(sudo /sbin/shutdown -P +1)
@@ -68,7 +68,7 @@ else
             /usr/bin/logger "Server backup currently in progress, waiting for the run to finish before shutting down."
             exit
           else
-            	/bin/bash /home/ubuntu/minecraftin/backup_server.sh true
+            	/bin/bash /home/ubuntu/minecraftin/backup_server.sh true true
 		
 		$(/usr/bin/screen -S minecraft -p 0 -X stuff "say Server powering down. ^M")
 		/bin/rm /home/ubuntu/minecraftin/server.lock
