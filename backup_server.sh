@@ -2,6 +2,7 @@
 
 source /home/ubuntu/minecraftin/secret.conf
 lock_file="/home/ubuntu/minecraftin/backup.lock"
+alternate_run_file="/home/ubuntu/minecraftin/alternate_backup_run.lock"
 
 if [[ -f "$lock_file" ]]; then
 	exit
@@ -23,7 +24,15 @@ cd /home/ubuntu/
 current=$(date +%Y%d%m)
 
 if [[ $1 > 0 ]]; then
-	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/old_backups/$current-backup.tar.gz
+
+	# push spare backups every other hour
+	if [[ ! -f "$alternate_run_file" ]]; then
+		/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/old_backups/$current-backup.tar.gz
+		rm $alternate_run_file
+	else
+		touch $alternate_run_file
+	fi
+	
 	/usr/bin/aws s3 rm s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
 	/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
 
