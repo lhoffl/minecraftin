@@ -7,7 +7,7 @@ import http.client
 def send( message ):
  
     # your webhook URL
-    webhookurl = ""
+    webhookurl = "WEBHOOK_URL"
  
     # compile the form data (BOUNDARY can be anything)
     formdata = "------:::BOUNDARY:::\r\nContent-Disposition: form-data; name=\"content\"\r\n\r\n" + message + "\r\n------:::BOUNDARY:::--"
