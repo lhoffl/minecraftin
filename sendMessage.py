@@ -1,5 +1,6 @@
 # system library for getting the command line argument
 import sys
+import os
  
 # web library
 import http.client
@@ -7,7 +8,7 @@ import http.client
 def send( message ):
  
     # your webhook URL
-    webhookurl = "WEBHOOK_URL"
+    webhookurl = os.environ["WEBHOOK_URL"]
  
     # compile the form data (BOUNDARY can be anything)
     formdata = "------:::BOUNDARY:::\r\nContent-Disposition: form-data; name=\"content\"\r\n\r\n" + message + "\r\n------:::BOUNDARY:::--"
