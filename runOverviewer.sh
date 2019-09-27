@@ -17,7 +17,7 @@ echo $difference
 
 lock_file="/home/ubuntu/minecraftin/overviewer.lock"
 
-if [[ "$difference" -gt "80" ]] || [[ $1 > 0 ]]; then
+if [[ "$difference" -gt "200" ]] || [[ $1 > 0 ]]; then
     if [[ -f "$lock_file" ]]; then
       exit
     fi  
