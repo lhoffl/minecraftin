@@ -35,8 +35,7 @@ if [[ $1 > 0 ]]; then
 	
 	# if server is shutting down, back it up as latest
 	if [[ $2 > 0 ]]; then
-		/usr/bin/aws s3 rm s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
-		/usr/bin/aws s3 cp /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
+		/usr/bin/aws s3 mv /home/ubuntu/backups/latest_backup.tar.gz s3://$BUCKET/minecraftin_backups/latest_backup.tar.gz
 	fi
 fi
 
